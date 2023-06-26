@@ -24,16 +24,16 @@ public class User extends BaseTimeEntity {
     @NotNull
     private String status;
     @NotNull
-    private boolean privacyAgreement;
+    private int privacyAgreement;
     @NotNull
-    private boolean marketingAgreement;
+    private int marketingAgreement;
     @NotNull
-    private boolean hostPermission;
+    private int hostPermission;
     @NotNull
     private String oauthProvider;
 
     @Builder
-    public User(long userId, String username, String nickname, String birth, String email, String password, String status, boolean privacyAgreement, boolean marketingAgreement, boolean hostPermission, String oauthProvider) {
+    public User(long userId, String username, String nickname, String birth, String email, String password, String status, int privacyAgreement, int marketingAgreement, int hostPermission, String oauthProvider) {
         this.userId = userId;
         this.username = username;
         this.nickname = nickname;
@@ -47,5 +47,11 @@ public class User extends BaseTimeEntity {
         this.oauthProvider = oauthProvider;
     }
 
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
 
+    public long getUserId() {
+        return userId;
+    }
 }

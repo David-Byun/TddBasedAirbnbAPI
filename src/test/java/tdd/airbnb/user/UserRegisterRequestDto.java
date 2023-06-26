@@ -13,7 +13,7 @@ public class UserRegisterRequestDto {
     private String birth;
     private String email;
     private String password;
-    private boolean marketingAgreement;
+    private int marketingAgreement;
 
 
     public User toEntity() {

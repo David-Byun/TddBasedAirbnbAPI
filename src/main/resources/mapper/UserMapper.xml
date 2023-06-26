@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="tdd.airbnb.user.UserMapper">
+    <insert id="save" parameterType="tdd.airbnb.user.User" useGeneratedKeys="false" keyProperty="user_id">
+        INSERT INTO User
+        (username, nickname, birth, email, password, status, privacy_agreement, marketing_agreement,
+        host_permission, oauth_provider)
+        VALUES (#{username}, #{nickname}, #{birth}, #{email}, #{password}, #{status}, #{privacyAgreement},
+        #{marketingAgreement}, #{hostPermission}, #{oauthProvider})
+    </insert>
+    <select id="findUserByEmail" resultType="tdd.airbnb.user.User">
+        SELECT * FROM User WHERE email = #{email}
+    </select>
+    <select id="checkEmail" resultType="int">
+        SELECT count(*) FROM User WHERE email = #{email}
+    </select>
+</mapper>
