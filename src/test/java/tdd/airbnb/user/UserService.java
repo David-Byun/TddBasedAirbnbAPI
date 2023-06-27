@@ -27,5 +27,6 @@ public class UserService {
 
     //user 가 Optional 인지 아닌지? :
     public User findUserByEmail(String email) {
+        return null;
     }
 }

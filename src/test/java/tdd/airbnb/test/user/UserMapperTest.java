@@ -1,14 +1,11 @@
 package tdd.airbnb.test.user;
 
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import tdd.airbnb.user.User;
 import tdd.airbnb.user.UserMapper;
-
-import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
