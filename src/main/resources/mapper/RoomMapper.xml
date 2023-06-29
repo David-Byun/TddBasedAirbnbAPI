@@ -22,6 +22,7 @@
                price,
                max_guest as maxGuest,
                description as roomDescription,
+               R.status,
                check_in_time as checkInTime,
                check_out_time as checkoutTime
         FROM Room R

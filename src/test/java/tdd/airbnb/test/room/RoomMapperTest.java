@@ -1,11 +1,9 @@
 package tdd.airbnb.test.room;
 
 import lombok.extern.slf4j.Slf4j;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import tdd.airbnb.room.Room;
 import tdd.airbnb.room.RoomMapper;
 import tdd.airbnb.room.dto.RoomDetailResponseDto;
 import tdd.airbnb.room.dto.RoomListResponseDto;
@@ -13,7 +11,7 @@ import tdd.airbnb.room.dto.RoomListResponseDto;
 import java.util.List;
 import java.util.Optional;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @Slf4j
@@ -30,7 +28,7 @@ class RoomMapperTest {
     }
 
     /**
-     * 데이터 20개
+     * 데이터 3개
      */
     @Test
     void 룸전체조회테스트() {
@@ -39,14 +37,13 @@ class RoomMapperTest {
         List<RoomListResponseDto> allRooms = roomMapper.findAllRooms();
 
         //then
-        assertThat(allRooms.size()).isEqualTo(20);
+        assertThat(allRooms.size()).isEqualTo(3);
     }
 
     @Test
     void Room세부정보조회테스트() {
 
-
-        //given
+        //when
         Optional<RoomDetailResponseDto> roomByRoomId = roomMapper.findRoomByRoomId(roomId);
 
         //then
@@ -54,9 +51,27 @@ class RoomMapperTest {
 
     }
 
-    @Test
-    void Room이존재하지않을때Exception() {
-
-    }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

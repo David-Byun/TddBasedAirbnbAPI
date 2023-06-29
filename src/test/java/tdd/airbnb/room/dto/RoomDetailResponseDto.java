@@ -1,12 +1,17 @@
 package tdd.airbnb.room.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import tdd.airbnb.room.Status;
 
 import java.util.List;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class RoomDetailResponseDto {
     private long roomId;
     private String hostName;
@@ -19,8 +24,10 @@ public class RoomDetailResponseDto {
     private int price; //room
     private int maxGuest; //room
     private String roomDescription; //room
+    private Status status;
     private String checkinTime; //room
     private String checkoutTime; //room
+
 //    private double roomAverageScore; //reservation > review AVG
 //    private long reviewCount; //Review Count
 //    private List<String> roomImageUrls; //Review Image Entity
