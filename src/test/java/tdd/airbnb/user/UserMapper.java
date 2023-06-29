@@ -2,7 +2,7 @@ package tdd.airbnb.user;
 
 
 import org.apache.ibatis.annotations.Mapper;
-import tdd.airbnb.user.User;
+import tdd.airbnb.user.dto.UserRegisterRequestDto;
 
 import java.util.Optional;
 
@@ -11,7 +11,9 @@ public interface UserMapper {
 
     void save(User user);
 
-    Optional<User> findUserByEmail(String email);
+    Optional<UserRegisterRequestDto> findUserByEmail(String email);
+
 
     int checkEmail(String email);
+
 }

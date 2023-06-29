@@ -1,9 +1,10 @@
-package tdd.airbnb.user;
+package tdd.airbnb.user.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import tdd.airbnb.user.User;
 
 @Data
 @AllArgsConstructor

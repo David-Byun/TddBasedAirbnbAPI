@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="tdd.airbnb.room.RoomMapper">
+    <select id="findAllRooms" resultType="tdd.airbnb.room.dto.RoomListResponseDto">
+        SELECT room_id as roomId,
+               address1 as city,
+               address3 as district,
+               price as price,
+               main_image as roomMainImage
+        FROM Room
+    </select>
+    <select id="findRoomByRoomId" resultType="tdd.airbnb.room.dto.RoomDetailResponseDto" parameterType="long">
+        SELECT room_id as roomId,
+               username as hostName,
+               address1 as metropolitan,
+               address2 as city,
+               address3 as town,
+               latitude,
+               longitude,
+               room_name as roomName,
+               price,
+               max_guest as maxGuest,
+               description as roomDescription,
+               check_in_time as checkInTime,
+               check_out_time as checkoutTime
+        FROM Room R
+        JOIN User U on R.user_id = U.user_id
+        WHERE R.room_id = #{roomId}
+    </select>
+</mapper>

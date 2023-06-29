@@ -2,14 +2,22 @@ package tdd.airbnb.user;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import tdd.airbnb.exception.UserException;
+import tdd.airbnb.user.dto.UserRegisterRequestDto;
+import tdd.airbnb.user.dto.UserRegisterResponseDto;
+import tdd.airbnb.user.dto.UserSignRequestDto;
+import tdd.airbnb.user.dto.UserSignResponseDto;
 
 @Service
-@RequiredArgsConstructor
 @Slf4j
+@RequiredArgsConstructor
 public class UserService {
 
+
+//    private final BCryptPasswordEncoder passwordEncoder;
     private final UserMapper userMapper;
 
     public UserRegisterResponseDto register(UserRegisterRequestDto userRegisterRequestDto) {
@@ -19,14 +27,22 @@ public class UserService {
         }
 
         User user = userRegisterRequestDto.toEntity();
+        // 비밀번호 암호화 추가
         userMapper.save(user);
         return UserRegisterResponseDto.builder()
                 .id(user.getUserId())
                 .build();
     }
 
-    //user 가 Optional 인지 아닌지? :
-    public User findUserByEmail(String email) {
-        return null;
+    public UserSignResponseDto login(UserSignRequestDto userSignRequestDto) {
+        User foundUser = userMapper.findUserByEmail(userSignRequestDto.getEmail()).orElseThrow(() -> new UserException("존재하지 않는 회원입니다")).toEntity();
+//
+//        if (!passwordEncoder.matches(userSignRequestDto.getPassword(), foundUser.getPassword())) {
+//            throw new UserException("패스워드가 틀려요");
+//        }
+
+        return UserSignResponseDto.builder()
+                .email(foundUser.getEmail())
+                .build();
     }
 }

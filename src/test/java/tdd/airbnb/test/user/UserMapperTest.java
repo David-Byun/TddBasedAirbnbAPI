@@ -2,10 +2,14 @@ package tdd.airbnb.test.user;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.mockito.Spy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import tdd.airbnb.user.User;
 import tdd.airbnb.user.UserMapper;
+import tdd.airbnb.user.dto.UserRegisterRequestDto;
+import tdd.airbnb.user.dto.UserSignRequestDto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -17,6 +21,9 @@ class UserMapperTest {
     @Autowired
     private UserMapper userMapper;
 
+    @Spy
+    private BCryptPasswordEncoder passwordEncoder;
+
     @Test
     void UserRepository가NULL아님() {
         Assertions.assertThat(userMapper).isNotNull();
@@ -24,7 +31,6 @@ class UserMapperTest {
 
     @Test
     void 회원가입테스트() {
-
         //given
         User user = User.builder()
                 .email("cc@naver.com")
@@ -42,12 +48,11 @@ class UserMapperTest {
 
         //when
         userMapper.save(user);
-        User savedUser = userMapper.findUserByEmail(user.getEmail()).get();
+        UserRegisterRequestDto savedUser = userMapper.findUserByEmail(user.getEmail()).get();
 
         //then
-        assertThat(savedUser.getUserId()).isNotNull();
         assertThat(savedUser.getNickname()).isEqualTo("cc");
-        assertThat(savedUser.getEmail()).isEqualTo("cc@naver.com");
+        assertThat(savedUser.getEmail()).isEqualTo(email);
     }
 
     @Test
@@ -108,4 +113,12 @@ class UserMapperTest {
                 .password("12345")
                 .build();
     }
+
+    private UserSignRequestDto loginUser() {
+        return UserSignRequestDto.builder()
+                .email("cc@naver.com")
+                .password("12345")
+                .build();
+    }
+
 }
