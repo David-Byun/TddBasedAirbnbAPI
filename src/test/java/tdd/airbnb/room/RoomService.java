@@ -32,7 +32,7 @@ public class RoomService {
         RoomDetailResponseDto foundedRoom = roomMapper.findRoomByRoomId(roomId).orElseThrow(() -> new RoomException("방이 존재하지 않아요"));
 
         //방이 INACTIVE인 경우
-        if(foundedRoom.getStatus() == Status.NONACTIVE) {
+        if(foundedRoom.getStatus() == Status.INACTIVE) {
             throw new RoomException("방이 비활성화상태에요");
         }
 

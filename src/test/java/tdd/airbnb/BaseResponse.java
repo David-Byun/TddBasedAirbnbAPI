@@ -27,5 +27,11 @@ public class BaseResponse<T> {
         this.result = null;
     }
 
-
+    //Common Exception, 보내는 데이터 포함하는 메시지 출력하면 되는 에러 처리
+    public BaseResponse(BaseResponseStatus status, T result) {
+        this.isSuccess = status.isSuccess();
+        this.responseMessage = status.getResponseMessage();
+        this.responseCode = status.getResponseCode();
+        this.result = result;
+    }
 }

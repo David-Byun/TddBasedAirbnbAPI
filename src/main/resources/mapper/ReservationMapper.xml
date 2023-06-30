@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="tdd.airbnb.reservation.ReservationMapper">
+    <resultMap id="ResultMap" type="tdd.airbnb.reservation.dto.ReservationResponseDto">
+        <id property="reservationCode" column="reservationCode" />
+        <result property="totalPrice" column="totalPrice" />
+        <result property="totalGuest" column="totalGuest" />
+        <result property="startDate" column="startDate" />
+        <result property="endDate" column="endDate" />
+        <result property="status" column="status" />
+        <association property="room" column="roomId" select="findRoomById" />
+        <association property="user" column="userId" select="findUserById" />
+    </resultMap>
+    <select id="findReservationByIdAndUserId" resultMap="ResultMap">
+        SELECT reservation_code as reservationCode,
+               total_price as totalPrice,
+               total_guest as totalGuest,
+               start_date as startDate,
+               end_date as endDate,
+               status,
+               room_id as roomId,
+               user_id as userId
+        FROM Reservation
+        WHERE reservation_id = #{reservationId}
+    </select>
+    <select id="findUserById" resultType="tdd.airbnb.user.User">
+        SELECT *
+        FROM User
+        WHERE user_id = #{userId}
+    </select>
+    <select id="findRoomById" resultType="tdd.airbnb.room.Room">
+        SELECT room_id as id,
+               room_name as roomName,
+               address1 as region,
+               address2 as city,
+               address3 as district,
+               latitude,
+               longitude,
+               price,
+               main_image as mainImage,
+               max_guest as maxGuest,
+               description,
+               check_in_time as checkInTime,
+               check_out_time as checkOutTime
+        FROM Room
+        WHERE room_id = #{roomId}
+    </select>
+</mapper>

@@ -6,8 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import tdd.airbnb.room.Status;
 
-import java.util.List;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

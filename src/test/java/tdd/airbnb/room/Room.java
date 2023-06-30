@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @Getter
 @RequiredArgsConstructor
 public class Room extends BaseTimeEntity {
+    @NonNull
     private long id;
 
     @NonNull
@@ -27,17 +28,21 @@ public class Room extends BaseTimeEntity {
     private Float longitude;
     @NonNull
     private int price;
+
+    @NonNull
     private String mainImage;
+
     @NonNull
     private int maxGuest;
+    @NonNull
     private String description;
     @NonNull
     private LocalDateTime checkInTime;
     @NonNull
     private LocalDateTime checkOutTime;
-    @NonNull
+
     private Status status;
-    @NonNull
+
     private User user;
 
 }

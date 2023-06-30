@@ -126,11 +126,6 @@ class RoomServiceTest {
         }
     }
 
-
-
-
-
-
     private RoomDetailResponseDto dto1L = RoomDetailResponseDto.builder()
             .roomId(1L)
             .hostName("testname")
@@ -159,7 +154,7 @@ class RoomServiceTest {
             .longitude(36.566535F)
             .price(1200000)
             .maxGuest(10)
-            .status(Status.NONACTIVE)
+            .status(Status.INACTIVE)
             .roomDescription("test description")
             .checkinTime("2023-06-12 00:00:00")
             .checkoutTime("2024-06-15 00:00:00")

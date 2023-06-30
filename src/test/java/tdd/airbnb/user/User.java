@@ -9,6 +9,7 @@ import javax.validation.constraints.NotNull;
 @Getter
 public class User extends BaseTimeEntity {
 
+    @NotNull
     private long userId;
 
     @NotNull
